@@ -31,10 +31,10 @@ const images = [
 //create markup - li..li
 //css styling (flex)
 
-const imageTags = [];
+/* const imageTags = [];
 let markupString = [];
-const test = 'it is a test string';
-
+ */
+/* 
 images.forEach(({ url, alt }) => {
   const image = document.createElement('img');
   image.setAttribute('src', url);
@@ -43,6 +43,24 @@ images.forEach(({ url, alt }) => {
 // markupString.push(`<li>${image}</li>`);
   console.log(`<li>${image}</li>`);
 })
-console.log(markupString.join(''));
-document.querySelector('.gallery').insertAdjacentHTML("afterbegin", markupString);
-//elem.insertAdjacentHTML(position, string);
+ */
+
+let markupString = '';
+images.forEach(({ url, alt }) => {
+  markupString += `<li><img src="${url}" alt="${alt}"></li>`;
+});
+
+document.querySelector('.gallery').insertAdjacentHTML('afterbegin', markupString);
+
+// ===styling===
+document.querySelectorAll('li').forEach(liElement => {
+  liElement.style.margin = '0 auto';
+  liElement.style.listStyleType = 'none';
+});
+const styleGallery = document.querySelector('.gallery');
+styleGallery.style.display = 'flex';
+styleGallery.style.flexDirection = 'column';
+
+styleGallery.querySelectorAll('img').forEach(image => {
+  image.style.width = '400px';
+});
