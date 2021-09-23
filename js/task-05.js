@@ -8,7 +8,8 @@ input#name - input(событие input), подставляет его
 <h1>Hello, <span id="name-output">Anonymous</span>!</h1>
  */
 
-document.addEventListener('keyup', event => {
+/* ======================variant 0======================*/
+/* document.addEventListener('keyup', event => {
   const inputItem = document.querySelector('#name-input');
   const outputItem = document.querySelector('#name-output');
   if (inputItem.value === '') {
@@ -16,4 +17,17 @@ document.addEventListener('keyup', event => {
   } else {
     outputItem.textContent = inputItem.value;
   }
-});
+}); */
+
+/* ======================variant 1======================*/
+const handleKeyUp = event => {
+  const inputItem = document.querySelector('#name-input');
+  const outputItem = document.querySelector('#name-output');
+  if (inputItem.value === '') {
+    outputItem.textContent = 'Anonymous';
+  } else {
+    outputItem.textContent = inputItem.value;
+  }
+};
+
+document.addEventListener('keyup', handleKeyUp);
