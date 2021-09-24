@@ -17,9 +17,7 @@ function getRandomHexColor() {
 document.querySelector('.change-color').addEventListener('click', event => {
   const selectedColor = getRandomHexColor();
   document.querySelector('body').style.backgroundColor = selectedColor;
-
-  /*   document.querySelector('style').insertAdjacentHTML('afterbegin', `.body {background-color: ${selectedColor};}`); */
-
   document.querySelector('body .color').innerHTML = `${selectedColor}`;
+  //or
   //document.querySelector('body .color').textContent = selectedColor;
 });
