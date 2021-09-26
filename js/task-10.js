@@ -38,22 +38,41 @@ const destroyBtn = controlArea.children[2];
 //  const createBtn = controlArea.querySelector('button[data-create]');
 //  const destroyBtn = controlArea.querySelector('button[data-destroy]');
 
+const divArea = document.querySelector('#boxes');
 
+let initialWidth;
+let initialHeight;
+
+const isInnerBoxExist = () => { if (divArea.lastElementChild === null) return false; else return true; }
+
+function createBox() {
+  if (isInnerBoxExist()) {
+    initialWidth = parseInt(divArea.lastElementChild.style.width) + 10;
+    initialHeight = parseInt(divArea.lastElementChild.style.height) + 10;
+  } else {
+    initialWidth = 30;
+    initialHeight = 30;
+  }
+
+  const div = document.createElement('div');
+  div.style.width = `${initialWidth}px`;
+  div.style.height = `${initialHeight}px`;
+  div.style.borderRadius = `50%`;
+  div.style.background = `radial-gradient(${getRandomHexColor()}, white)`;
+  divArea.append(div);
+
+
+}
 
 function createBoxes() {
-  let initialWidth = 30;
-  let initialHeight = 30;
-  for (let i = 0; i < +numberInput.value * 10; i += 10) {
-    const div = document.createElement('div');
-    div.style.width = `${initialWidth + i}px`;
-    div.style.height = `${initialHeight + i}px`;
-    div.style.backgroundColor = `${getRandomHexColor()}`;
-    document.querySelector('#boxes').append(div);
+    
+  for (let i = 0; i < numberInput.value; i++) {
+    createBox();
   }
+
 }
 
 createBtn.addEventListener('click', createBoxes);
-
 
 function destroyBoxes() {
   document.querySelector('#boxes').innerHTML = '';
